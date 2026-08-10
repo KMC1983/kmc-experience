@@ -1,4 +1,9 @@
 import { defineConfig } from 'astro/config';
+
 export default defineConfig({
-  output: 'static'
+  site: 'https://www.kmcexperience.com',
+  base: '/',
+  build: {
+    format: 'directory'
+  }
 });
