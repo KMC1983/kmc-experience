@@ -2,6 +2,14 @@
   "projects": {
     "default": "kmc-experience"
   },
-  "targets": {},
+  "targets": {
+    "kmc-experience": {
+      "hosting": {
+        "kmc-experience": [
+          "kmc-experience"
+        ]
+      }
+    }
+  },
   "etags": {}
 }

@@ -1,5 +1,6 @@
 {
     "hosting": {
+      "target": "kmc-experience",
       "public": "dist",
       "ignore": [
         "firebase.json",
