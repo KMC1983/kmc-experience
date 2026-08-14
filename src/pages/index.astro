@@ -735,9 +735,9 @@
         <!-- Animated Hero Section -->
         <section id="home" class="hero">
             <!-- Background elements -->
-            <div class="background-element" style="top: 10%; left: 5%;">🥊</div>
-            <div class="background-element" style="top: 15%; right: 10%;">🎤</div>
-            <div class="background-element" style="bottom: 20%; left: 15%;">🎧</div>
+           
+        <!-- Background elements -->
+<div class="background-element" style="bottom: 20%; left: 15%;">🎧</div>
             
             <div class="graffiti-text" style="top: 20%; left: 5%;">BRONX</div>
             <div class="graffiti-text" style="bottom: 15%; right: 5%;">HIP HOP</div>
@@ -1208,29 +1208,7 @@
             observer.observe(element);
         });
         
-        // Create additional floating elements dynamically
-        const elements = ['🎤', '🥊', '🎧', '💿', '📻', '🏙️', '🎶', '🔥'];
-        const hero = document.querySelector('.hero');
-        
-        // Create 10 floating elements
-        for (let i = 0; i < 10; i++) {
-            const el = document.createElement('div');
-            el.className = 'animated-element';
-            el.textContent = elements[Math.floor(Math.random() * elements.length)];
-            
-            // Random position
-            const top = Math.floor(Math.random() * 90) + 5;
-            const left = Math.floor(Math.random() * 90) + 5;
-            const delay = Math.random() * 5;
-            
-            el.style.top = `${top}%`;
-            el.style.left = `${left}%`;
-            el.style.animationDelay = `${delay}s`;
-            el.style.fontSize = `${Math.random() * 2 + 1}rem`;
-            el.style.opacity = Math.random() * 0.3 + 0.1;
-            
-            hero.appendChild(el);
-        }
+       
         
         // Button animation
         const exploreBtn = document.getElementById('exploreBtn');
