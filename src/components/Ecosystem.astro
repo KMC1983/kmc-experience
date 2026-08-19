@@ -1,0 +1,36 @@
+---
+import { platforms } from '../data/site.js';
+
+const iconMap: Record<string, string> = {
+  youtube: 'fab fa-youtube',
+  instagram: 'fab fa-instagram',
+  tiktok: 'fab fa-tiktok',
+  twitter: 'fab fa-x-twitter',
+  discord: 'fab fa-discord',
+  telegram: 'fab fa-telegram',
+  patreon: 'fab fa-patreon',
+  twitch: 'fab fa-twitch',
+  spotify: 'fab fa-spotify',
+  kofi: 'fas fa-mug-hot',
+};
+---
+
+<section id="ecosystem" class="ecosystem reveal">
+  <h2>🌐 Join the KMC Experience Ecosystem</h2>
+  <ul class="platforms">
+    {
+      platforms.map((platform) => (
+        <li>
+          <a href={platform.href} target="_blank" rel="noopener noreferrer">
+            <span class={`platform-icon ${platform.icon}`}>
+              <i class={iconMap[platform.icon]}></i>
+            </span>
+            <span>
+              {platform.name} – {platform.label}
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>

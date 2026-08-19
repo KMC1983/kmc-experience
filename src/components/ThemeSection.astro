@@ -1,0 +1,36 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  icon: string;
+  intro: string;
+  tags: string[];
+  cta?: { label: string; href: string };
+}
+
+const { id, title, icon, intro, tags, cta } = Astro.props;
+---
+
+<section id={id} class="section street-section reveal">
+  <div class="section-header">
+    <span class="section-sticker">{icon}</span>
+    <h2>{title}</h2>
+  </div>
+  <p class="section-intro">{intro}</p>
+
+  <div class="street-tag-cloud">
+    {tags.map((tag, i) => (
+      <span class="street-tag" style={`--rot: ${(i % 5) - 2}deg`}>{tag}</span>
+    ))}
+  </div>
+
+  {
+    cta && (
+      <div class="section-cta">
+        <a href={cta.href} class="cta-button spotify-btn" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-spotify"></i> {cta.label}
+        </a>
+      </div>
+    )
+  }
+</section>

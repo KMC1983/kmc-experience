@@ -1,0 +1,46 @@
+---
+import { site, dnaTraits } from '../data/site.js';
+---
+
+<section id="about" class="section about-dna reveal">
+  <div class="section-header">
+    <span class="section-sticker">🧬</span>
+    <h2>My Ego's DNA</h2>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-photo">
+      <img src={site.profileImage} alt="KMC — The KMC Experience" />
+      <div class="photo-tag">BRONX · NYC</div>
+    </div>
+    <div class="about-bio">
+      <h3>The blueprint behind the brand</h3>
+      <p>
+        The KMC Experience is the real me — Bronx raised, hip hop fed, spiritually curious,
+        and always building. Rap culture, occult knowledge, anime, stocks, travel, and
+        whatever else the ADHD brain latches onto that day.
+      </p>
+      <p>
+        This site is the map. Spirituality, entertainment, finance, music, R&B, and
+        destinations beyond the city. Every platform is another block in the same
+        neighborhood.
+      </p>
+      <p>
+        Unfiltered. Unapologetic. Street mystic energy. Pull up — the cypher's open.
+      </p>
+      <a href="#spirituality" class="cta-button">Explore the Themes</a>
+    </div>
+  </div>
+
+  <div class="dna-grid">
+    {
+      dnaTraits.map((trait) => (
+        <div class="dna-card">
+          <div class="emoji">{trait.emoji}</div>
+          <h4>{trait.title}</h4>
+          <p>{trait.description}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

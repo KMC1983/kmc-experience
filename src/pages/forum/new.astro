@@ -1,0 +1,201 @@
+---
+// src/pages/forum/new.astro
+// The "Share Your Story" form. Pure UI for now — nothing here saves
+// anywhere until Firebase Auth + Firestore are wired in (step 2).
+import ForumLayout from "../../layouts/ForumLayout.astro";
+
+const categories = [
+  "Introduce Yourself",
+  "First Date",
+  "Red Flag or Nah?",
+  "Success Story",
+  "Advice",
+];
+---
+<ForumLayout title="Share Your Story — The Cypher">
+  <a class="back-link" href="/forum">&larr; Back to the feed</a>
+
+  <h1 class="page-title">Share Your Story</h1>
+  <p class="page-subtitle">
+    Introduce yourself, ask for advice, or tell the Cypher how it went.
+    This is a safe space, keep it real and keep it respectful.
+  </p>
+
+  <form class="story-form" id="storyForm">
+    <label>
+      Your name
+      <input type="text" name="name" placeholder="e.g. Marcus" required />
+    </label>
+
+    <label>
+      Category
+      <select name="category" required>
+        {categories.map((cat) => <option value={cat}>{cat}</option>)}
+      </select>
+    </label>
+
+    <label>
+      Headline
+      <input
+        type="text"
+        name="tagline"
+        placeholder="Sum up your post in one line"
+        required
+      />
+    </label>
+
+    <label>
+      Tell your story
+      <textarea
+        name="bio"
+        rows="6"
+        placeholder="Write about yourself, your situation, or your question..."
+        required
+      ></textarea>
+    </label>
+
+    <label>
+      Tags (comma separated)
+      <input type="text" name="tags" placeholder="e.g. First Date, Nerves" />
+    </label>
+
+    <fieldset>
+      <legend>Link your socials (optional)</legend>
+      <label class="inline">
+        Instagram
+        <input type="url" name="instagram" placeholder="https://instagram.com/you" />
+      </label>
+      <label class="inline">
+        TikTok
+        <input type="url" name="tiktok" placeholder="https://tiktok.com/@you" />
+      </label>
+      <label class="inline">
+        Meetup Group
+        <input type="url" name="meetup" placeholder="https://meetup.com/your-group" />
+      </label>
+    </fieldset>
+
+    <button type="submit">Post to the Cypher</button>
+    <p class="form-note">
+      Heads up: this form is a preview only. Posts won't actually save until
+      we connect it to Firebase.
+    </p>
+  </form>
+</ForumLayout>
+
+<script>
+  const form = document.getElementById("storyForm");
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    alert(
+      "This is a layout preview. Once Firebase is wired up, this will really post to the Cypher feed."
+    );
+  });
+</script>
+
+<style>
+  .back-link {
+    display: inline-block;
+    color: var(--text-muted);
+    font-family: var(--font-label);
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
+
+  .back-link:hover {
+    color: var(--accent-gold);
+  }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: 36px;
+    letter-spacing: 0.4px;
+    margin: 0 0 6px;
+  }
+
+  .page-subtitle {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.5;
+    max-width: 52ch;
+    margin: 0 0 26px;
+  }
+
+  .story-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-soft);
+    border-radius: 18px;
+    padding: 26px;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  label.inline {
+    font-size: 12px;
+  }
+
+  input,
+  select,
+  textarea {
+    background: var(--bg-deep);
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: 2px solid var(--accent-gold);
+    outline-offset: 1px;
+  }
+
+  fieldset {
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 14px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  legend {
+    font-family: var(--font-label);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent-rose);
+    padding: 0 6px;
+  }
+
+  button[type="submit"] {
+    align-self: flex-start;
+    background: var(--accent-gold);
+    color: var(--bg-deep);
+    border: none;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 12px 24px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+
+  .form-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin: 0;
+  }
+</style>

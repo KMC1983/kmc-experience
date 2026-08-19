@@ -1,0 +1,40 @@
+---
+interface Card {
+  title: string;
+  description: string;
+  cta: string;
+  href: string;
+}
+
+interface Props {
+  id: string;
+  title: string;
+  cards: Card[];
+}
+
+const { id, title, cards } = Astro.props;
+const isExternal = (href: string) => href.startsWith('http');
+---
+
+<section id={id} class="section reveal">
+  <h2>{title}</h2>
+  <div class="grid">
+    {
+      cards.map((card) => (
+        <div class="card">
+          <h3>{card.title}</h3>
+          <p>{card.description}</p>
+          <a
+            href={card.href}
+            class="buy-button"
+            {...(isExternal(card.href)
+              ? { target: '_blank', rel: 'noopener noreferrer' }
+              : {})}
+          >
+            {card.cta}
+          </a>
+        </div>
+      ))
+    }
+  </div>
+</section>

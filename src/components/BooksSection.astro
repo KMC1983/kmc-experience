@@ -1,0 +1,41 @@
+---
+import { books, bookStores } from '../data/site.js';
+---
+
+<section id="books" class="section reveal">
+  <h2>📚 My PDF Books & Guides</h2>
+  <p>
+    Illustrated journals, calendars, spiritual guides, and more — all designed for mobile,
+    tablet, and desktop reading.
+  </p>
+
+  <div class="book-grid">
+    {
+      books.map((book) => (
+        <div class="book-card">
+          <img src={book.image} alt={book.title} loading="lazy" />
+          <div class="book-info">
+            <h3>{book.title}</h3>
+            <p>{book.description}</p>
+            <div class="book-price">{book.price}</div>
+            <a
+              href={book.href}
+              class="buy-button"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Buy on {book.store}
+            </a>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="text-center" style="margin-top: 3rem;">
+    <h3>Where I Sell My Books</h3>
+    <div class="interest-tags" style="justify-content: center;">
+      {bookStores.map((store) => <span class="tag">{store}</span>)}
+    </div>
+  </div>
+</section>

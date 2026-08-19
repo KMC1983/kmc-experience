@@ -1,0 +1,92 @@
+---
+import { interestTags } from '../data/site.js';
+---
+
+<section id="community" class="section profile-section reveal">
+  <h2>💝 Connect & Share</h2>
+  <p class="text-center" style="margin-bottom: 2rem;">
+    Join our community of like-minded people into culture, consciousness, and creativity.
+    Or jump straight into <a href="/forum/" style="color: var(--primary);">The Cypher</a>.
+  </p>
+
+  <div class="profile-form">
+    <h3>Create Your Profile</h3>
+    <form id="communityForm">
+      <div class="form-group">
+        <label for="name">Name / Nickname</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="How should we know you?"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="your.email@example.com"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="age">Age Range</label>
+        <select id="age" name="age" required>
+          <option value="">Select age range</option>
+          <option value="18-25">18-25</option>
+          <option value="26-35">26-35</option>
+          <option value="36-45">36-45</option>
+          <option value="46+">46+</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Your Interests (select at least one)</label>
+        <div class="interest-tags" id="interestTags">
+          {
+            interestTags.map((tag) => (
+              <span class="tag" data-value={tag.value}>
+                {tag.label}
+              </span>
+            ))
+          }
+        </div>
+        <input type="hidden" id="interests" name="interests" />
+      </div>
+
+      <div class="form-group">
+        <label for="bio">Tell us about yourself</label>
+        <textarea
+          id="bio"
+          name="bio"
+          rows="4"
+          placeholder="What makes you unique? What are you looking for in this community?"
+          required
+          maxlength="500"></textarea>
+        <small style="display: block; text-align: right; opacity: 0.7;">
+          Max 500 characters
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="contact">How to connect (Instagram, Twitter, etc.)</label>
+        <input
+          type="text"
+          id="contact"
+          name="contact"
+          placeholder="@yourusername or email"
+          required
+        />
+      </div>
+
+      <button type="submit" class="cta-button" style="width: 100%;">
+        Join the Community
+      </button>
+    </form>
+  </div>
+</section>

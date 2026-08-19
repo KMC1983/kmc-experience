@@ -1,0 +1,26 @@
+---
+import { supportOptions } from '../data/site.js';
+---
+
+<section id="support" class="section reveal">
+  <h2>💸 Support The KMC Experience</h2>
+  <div class="grid">
+    {
+      supportOptions.map((option) => (
+        <div class="card">
+          <h3>{option.title}</h3>
+          <p>{option.description}</p>
+          <a
+            href={option.href}
+            class="buy-button"
+            {...(option.disabled
+              ? { 'aria-disabled': 'true', style: 'opacity: 0.6; pointer-events: none;' }
+              : { target: '_blank', rel: 'noopener noreferrer' })}
+          >
+            {option.label}
+          </a>
+        </div>
+      ))
+    }
+  </div>
+</section>

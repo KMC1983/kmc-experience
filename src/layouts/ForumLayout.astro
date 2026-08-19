@@ -1,0 +1,150 @@
+---
+// src/layouts/ForumLayout.astro
+// Shared shell for every forum page: fonts, header, nav, footer.
+const { title = "The Cypher — Dating Advice, Bronx Style" } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@500&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="cypher-shell">
+      <header class="cypher-header">
+        <a class="cypher-logo" href="/forum">
+          The <span>Cypher</span>
+        </a>
+        <nav class="cypher-nav">
+          <a href="/forum">Feed</a>
+          <a href="/forum/new">Share Your Story</a>
+        </nav>
+      </header>
+
+      <main class="cypher-main">
+        <slot />
+      </main>
+
+      <footer class="cypher-footer">
+        <p>The Cypher is part of The KMC Experience. Real talk, no judgment.</p>
+      </footer>
+    </div>
+
+    <style is:global>
+      :root {
+        --bg-deep: #0b1220;
+        --bg-panel: #131e33;
+        --bg-panel-hover: #1b2942;
+        --accent-gold: #d4a24c;
+        --accent-gold-soft: rgba(212, 162, 76, 0.16);
+        --accent-rose: #e85c7b;
+        --accent-rose-soft: rgba(232, 92, 123, 0.14);
+        --text-primary: #f2f4f8;
+        --text-muted: #8c97af;
+        --border-soft: rgba(255, 255, 255, 0.08);
+
+        --font-display: "Bebas Neue", sans-serif;
+        --font-body: "Inter", sans-serif;
+        --font-label: "IBM Plex Mono", monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg-deep);
+        color: var(--text-primary);
+        font-family: var(--font-body);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    </style>
+
+    <style>
+      .cypher-shell {
+        max-width: 720px;
+        margin: 0 auto;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        padding: 0 20px;
+      }
+
+      .cypher-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 28px 0;
+        border-bottom: 1px solid var(--border-soft);
+      }
+
+      .cypher-logo {
+        font-family: var(--font-display);
+        font-size: 28px;
+        letter-spacing: 0.5px;
+        color: var(--text-primary);
+      }
+
+      .cypher-logo span {
+        color: var(--accent-gold);
+      }
+
+      .cypher-nav {
+        display: flex;
+        gap: 20px;
+        font-family: var(--font-label);
+        font-size: 12px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .cypher-nav a {
+        color: var(--text-muted);
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--border-soft);
+        transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+      }
+
+      .cypher-nav a:hover {
+        color: var(--text-primary);
+        border-color: var(--accent-gold);
+        background: var(--accent-gold-soft);
+      }
+
+      .cypher-main {
+        flex: 1;
+        padding: 28px 0 60px;
+      }
+
+      .cypher-footer {
+        padding: 20px 0 32px;
+        border-top: 1px solid var(--border-soft);
+        color: var(--text-muted);
+        font-size: 13px;
+        text-align: center;
+      }
+
+      @media (max-width: 480px) {
+        .cypher-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 14px;
+        }
+      }
+    </style>
+  </body>
+</html>

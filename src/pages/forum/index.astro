@@ -1,0 +1,185 @@
+---
+// src/pages/forum/index.astro
+// The main forum feed. Reads from the fake data file — swap that file for a
+// Firestore query later and this page doesn't need to change.
+import ForumLayout from "../../layouts/ForumLayout.astro";
+import { forumPosts } from "../../data/forumPosts.js";
+
+// Newest / highest co-signed first for now — simple sort, no backend needed.
+const sortedPosts = [...forumPosts].sort((a, b) => b.coSigns - a.coSigns);
+---
+<ForumLayout title="The Cypher — Dating Advice, Bronx Style">
+  <section class="intro">
+    <h1>The Cypher</h1>
+    <p>
+      Dating advice, real stories, and honest reactions from the Bronx and beyond.
+      Introduce yourself, ask the circle a question, or just tell us how it went.
+    </p>
+  </section>
+
+  <div class="feed">
+    {
+      sortedPosts.map((post) => (
+        <a class="post-card" href={`/forum/${post.slug}`}>
+          <div class="stamp">
+            <span class="stamp-count">{post.coSigns}</span>
+            <span class="stamp-label">co-signs</span>
+          </div>
+
+          <div class="post-body">
+            <span class="post-category">{post.category}</span>
+            <h2 class="post-title">{post.tagline}</h2>
+            <p class="post-meta">
+              {post.name}, {post.age}
+            </p>
+            <div class="tag-row">
+              {post.tags.map((tag) => (
+                <span class="tag-pill">{tag}</span>
+              ))}
+            </div>
+            <p class="comment-count">{post.comments.length} replies</p>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</ForumLayout>
+
+<style>
+  .intro {
+    margin-bottom: 32px;
+  }
+
+  .intro h1 {
+    font-family: var(--font-display);
+    font-size: 44px;
+    letter-spacing: 0.5px;
+    margin: 0 0 8px;
+  }
+
+  .intro p {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.5;
+    max-width: 52ch;
+  }
+
+  .feed {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .post-card {
+    display: flex;
+    gap: 18px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-soft);
+    border-radius: 16px;
+    padding: 18px;
+    transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+  }
+
+  .post-card:hover {
+    background: var(--bg-panel-hover);
+    border-color: var(--accent-gold);
+    transform: translateY(-1px);
+  }
+
+  .stamp {
+    flex-shrink: 0;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-gold);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-gold);
+  }
+
+  .stamp-count {
+    font-family: var(--font-display);
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  .stamp-label {
+    font-family: var(--font-label);
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+  }
+
+  .post-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .post-category {
+    display: inline-block;
+    font-family: var(--font-label);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent-rose);
+    background: var(--accent-rose-soft);
+    padding: 3px 9px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+
+  .post-title {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0 0 4px;
+    line-height: 1.35;
+  }
+
+  .post-meta {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin: 0 0 10px;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .tag-pill {
+    font-family: var(--font-label);
+    font-size: 10px;
+    letter-spacing: 0.03em;
+    color: var(--text-muted);
+    border: 1px solid var(--border-soft);
+    padding: 3px 8px;
+    border-radius: 999px;
+  }
+
+  .comment-count {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  @media (max-width: 480px) {
+    .post-card {
+      gap: 12px;
+      padding: 14px;
+    }
+
+    .stamp {
+      width: 50px;
+      height: 50px;
+    }
+
+    .intro h1 {
+      font-size: 34px;
+    }
+  }
+</style>

@@ -1,0 +1,46 @@
+---
+import { site, culturePillars } from '../data/site.js';
+---
+
+<section
+  id="home"
+  class="hero"
+  style={`background-image: linear-gradient(rgba(10, 10, 20, 0.75), rgba(10, 10, 20, 0.75)), url('${site.heroBackground}');`}
+>
+  <div class="background-element" style="bottom: 20%; left: 15%;">🎧</div>
+  <div class="graffiti-text" style="top: 20%; left: 5%;">BRONX</div>
+  <div class="graffiti-text" style="bottom: 15%; right: 5%;">HIP HOP</div>
+
+  <div class="hero-content">
+    <h1 class="title">{site.title}</h1>
+    <p class="subtitle">{site.description}</p>
+
+    <div class="culture-elements">
+      {
+        culturePillars.map((pillar) => (
+          <div class="culture-card">
+            <div class="culture-icon">
+              <i class={`fas ${pillar.icon}`}></i>
+            </div>
+            <h3 class="culture-title">{pillar.title}</h3>
+            <p class="culture-desc">{pillar.description}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="audio-player">
+      <p>
+        <i class="fas fa-microphone-alt"></i> "{site.introQuote}"
+      </p>
+      <audio controls preload="metadata">
+        <source src={site.introAudio} type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <a href="#ecosystem" class="cta-button" id="exploreBtn">
+      Explore Ecosystem <i class="fas fa-arrow-down"></i>
+    </a>
+  </div>
+</section>
